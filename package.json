@@ -1,0 +1,32 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "Project for a Web Based Chess Game",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icomp-felipe/progweb2.git"
+  },
+  "keywords": [
+    "chess;javascript;programming"
+  ],
+  "author": "Felipe André",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icomp-felipe/progweb2/issues"
+  },
+  "homepage": "https://github.com/icomp-felipe/progweb2#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "jquery": "^3.4.1",
+    "morgan": "^1.9.1",
+    "node-sass-middleware": "^0.11.0",
+    "nodemon": "^1.19.2",
+    "popper.js": "^1.15.0"
+  }
+}
