@@ -1,10 +1,46 @@
 const express = require("express");
+const logger  = require("morgan");
+const favicon = require("serve-favicon");
+const handlebars = require("express-handlebars");
+const router  = require("./config/routes");
+const sass  = require("node-sass-middleware");
 const app = express();
 
+/********************* Bloco de Middlewares *********************/
 
-app.get("/", function(req, res) {
-	res.send("Hello world!");
-});
+// Invocando o Morgan
+app.use(logger("short"));
+
+// Invocando o Handlebars
+app.engine("handlebars",handlebars({
+	helpers: require(__dirname + "/app/views/helpers/string_helpers.js"),
+	defaultLayout: "default"
+}));
+app.set("view engine","handlebars");
+app.set("views", __dirname + "/app/views");
+
+// Invocando o SASS
+app.use(sass({
+	src: __dirname + "/public/scss",
+	dest: __dirname + "/public/css",
+	debug: true,
+	outputStyle: "compressed",
+	prefix: "/css"
+}));
+
+// Declarando o favicon
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
+
+// Aqui torno acessível todo o conteúdo do diretório '/public/img'
+app.use("/img", [
+	express.static(__dirname + "/public/img")
+]);
+
+/********************* Bloco de Roteamento *********************/
+
+app.use(router);
+
+/********************* Bloco do Servidor *********************/
 
 app.listen(3000, function() {
 	console.log(":: Express App started at port 3000...");

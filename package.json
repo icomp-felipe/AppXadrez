@@ -23,10 +23,12 @@
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
+    "handlebars-helpers": "^0.10.0",
     "jquery": "^3.4.1",
     "morgan": "^1.9.1",
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^1.19.2",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "serve-favicon": "^2.5.0"
   }
 }
