@@ -11,14 +11,6 @@ const app = express();
 // Invocando o Morgan
 app.use(logger("short"));
 
-// Invocando o Handlebars
-app.engine("handlebars",handlebars({
-	helpers: require(__dirname + "/app/views/helpers/string_helpers.js"),
-	defaultLayout: "default"
-}));
-app.set("view engine","handlebars");
-app.set("views", __dirname + "/app/views");
-
 // Invocando o SASS
 app.use(sass({
 	src: __dirname + "/public/scss",
@@ -27,6 +19,23 @@ app.use(sass({
 	outputStyle: "compressed",
 	prefix: "/css"
 }));
+
+// Invocando o Handlebars
+app.engine("handlebars",handlebars({
+	helpers: require(__dirname + "/app/views/helpers/string_helpers.js"),
+	defaultLayout: "default"
+}));
+app.set("view engine","handlebars");
+app.set("views", __dirname + "/app/views");
+
+// Invocando o Bootstrap e suas dependências
+app.use("/js",[
+	express.static(__dirname + "/node_modules/jquery/dist"),
+	express.static(__dirname + "/node_modules/popper.js/dist/umd"),
+	express.static(__dirname + "/node_modules/bootstrap/dist/js"),
+	express.static(__dirname + "/node_modules/@fortawesome/fontawesome-free/js"),
+	express.static(__dirname + "/public/js")
+]);
 
 // Declarando o favicon
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
