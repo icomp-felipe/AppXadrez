@@ -18,7 +18,9 @@ app.use(sass({
 	debug: true,
 	outputStyle: "compressed",
 	prefix: "/css"
-}));
+}),
+	express.static(__dirname + '/public')
+);
 
 // Invocando o Handlebars
 app.engine("handlebars",handlebars({
@@ -39,11 +41,6 @@ app.use("/js",[
 
 // Declarando o favicon
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
-
-// Aqui torno acessível todo o conteúdo do diretório '/public/img'
-app.use("/img", [
-	express.static(__dirname + "/public/img")
-]);
 
 /********************* Bloco de Roteamento *********************/
 
