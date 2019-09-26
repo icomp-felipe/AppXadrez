@@ -6,10 +6,15 @@ const router  = require("./config/routes");
 const sass  = require("node-sass-middleware");
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 /********************* Bloco de Middlewares *********************/
 
 // Invocando o Morgan
 app.use(logger("short"));
+
+// Chamando o middleware de tratamento de requisições POST
+app.use(express.urlencoded({extended: false}));
 
 // Invocando o SASS
 app.use(sass({
@@ -48,6 +53,6 @@ app.use(router);
 
 /********************* Bloco do Servidor *********************/
 
-app.listen(3000, function() {
+app.listen(PORT, function() {
 	console.log(":: Express App started at port 3000...");
 });

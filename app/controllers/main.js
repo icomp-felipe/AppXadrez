@@ -15,4 +15,8 @@ const about = (req, res) => {
     })
 }
 
-module.exports = { index, about }
+const ui = (req, res) => {
+	res.render("main/ui");
+}
+
+module.exports = { index, about, ui }
