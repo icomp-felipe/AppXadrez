@@ -5,14 +5,15 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="/curso">Cursos</a></li>
-                <li class="breadcrumb-item active">Adicionar</li>
+                <li class="breadcrumb-item active">Atualizar</li>
             </ol>
         </div>
     </div>
 
     <div class="col-8">
-        <h1>Adicionar Curso</h1>
+        <h1>Atualizar Curso</h1>
     </div>
+    
     <div class="col-4">
         <div class="float-right mt-4">
             <a class="btn btn-secondary" href="/curso"><i class="fas fa-arrow-left"></i> Voltar</a>
@@ -21,21 +22,20 @@
 
     <div class="col-8">
 
-        <form action='/curso/create' method="POST">
+        <form action='/curso/update' method="POST">
             <div class="form-group">
                 <label for="sigla">Sigla</label>
-                <input type="text" class="form-control" name="sigla" id="sigla" placeholder="Digite a sigla do curso">
+                <input type="text" class="form-control" name="sigla" id="sigla" placeholder="Digite a sigla do curso" value="{{curso.sigla}}">
             </div>
 
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite a nome do curso">
+                <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite a nome do curso" value="{{curso.nome}}">
             </div>
 
             <div class="form-group">
                 <label for="descricao">Descrição</label>
-                <input type="text" class="form-control" name="descricao" id="descricao"
-                    placeholder="Digite uma descrição para o curso">
+                <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite uma descrição para o curso" value="{{curso.descricao}}">
             </div>
 
             <fieldset class="form-group">
@@ -66,7 +66,9 @@
                 </div>
             </fieldset>
 
-            <button type="submit" id="botao_cadastrar" class="btn btn-secondary">Cadastrar</button>
+            <input type="hidden" name="id" value="{{curso.id}}">
+
+            <button type="submit" id="botao_atualizar" class="btn btn-secondary">Atualizar</button>
 
         </form>
 

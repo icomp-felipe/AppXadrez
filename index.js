@@ -6,7 +6,7 @@ const router  = require("./config/routes");
 const sass  = require("node-sass-middleware");
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.EXPRESS_PORT || 3000;
 
 /********************* Bloco de Middlewares *********************/
 
@@ -54,5 +54,5 @@ app.use(router);
 /********************* Bloco do Servidor *********************/
 
 app.listen(PORT, function() {
-	console.log(":: Express App started at port 3000...");
+	console.log(`:: Express App started at port ${PORT}...`);
 });

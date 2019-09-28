@@ -4,7 +4,7 @@
   "description": "Project for a Web Based Chess Game",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "export EXPRESS_PORT=3001; nodemon index.js"
   },
   "repository": {
     "type": "git",
