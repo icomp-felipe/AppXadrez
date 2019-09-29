@@ -1,18 +1,9 @@
 const index = (req,res) => {
-
-    const content = "App main page";
-    res.render("main/index", {
-        content: content
-    })
-
+    res.render("main/index");
 }
 
 const about = (req, res) => {
-
-    const content = "About page";
-    res.render("main/about", {
-        content: content
-    })
+    res.render("main/about");
 }
 
 const ui = (req, res) => {
