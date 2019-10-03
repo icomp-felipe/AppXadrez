@@ -13,7 +13,13 @@ module.exports = (sequelize, DataTypes) => {
         },
         nome: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                len: {
+                    args: [4,50],
+                    msg : "O nome do curso precisa ter entre 4 e 50 caracteres!"
+                }
+            }
         },
         descricao: {
             type: DataTypes.TEXT,

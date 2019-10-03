@@ -40,24 +40,30 @@ const read = async function(req, res) {
 }
 
 const update = async function(req, res) {
+    var curso = await Curso.findByPk(req.params.id || req.body.id);
 
-    // Se a requisição for 'GET', mostro a página de atualizaão
+    // Se a requisição for 'GET', mostro a página de atualização
     if (req.route.methods.get) {
 
-        var curso = await Curso.findOne({where: {id: req.params.id}});
 
         res.render("curso/update", { curso });
     }
     
     else {
+
+        curso.sigla     = req.body.sigla;
+        curso.nome      = req.body.nome;
+        curso.descricao = req.body.descricao;
+        curso.id_area   = req.body.id_area;
+
         try {
-            await Curso.update({sigla: req.body.sigla, descricao: req.body.descricao, id_area: req.body.id_area},
-                {where: {id: req.body.id}});
+            await curso.save();
+            res.redirect("/curso");
         }
         catch (exception) {
-            console.log(exception);
+            res.render("curso/update", { curso, e:exception.errors });
         }
-        res.redirect("/curso");
+        
     }
 
 }
