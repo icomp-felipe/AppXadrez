@@ -26,42 +26,51 @@ const create = async function(req, res) {
         
         try {
             await Curso.create(req.body);
+            res.redirect("/curso");
         }
         catch (exception) {
             console.log(exception);
         }
-        res.redirect("/curso");
+        
     }
 
 }
 
 const read = async function(req, res) {
-    res.end(`:: Aqui vai ter um modal, um dia... ${req.params.id}`);
+    res.end(`:: Aqui vai ter um modal, um dia... ID: ${req.params.id}`);
 }
 
 const update = async function(req, res) {
-    var curso = await Curso.findByPk(req.params.id || req.body.id);
+
+    // Aqui recupero o curso identificado pelo ID na URL ou no form do POST
+    let curso = await Curso.findByPk(req.params.id || req.body.id);
 
     // Se a requisição for 'GET', mostro a página de atualização
-    if (req.route.methods.get) {
-
-
+    if (req.route.methods.get)
         res.render("curso/update", { curso });
-    }
     
+    // Caso a requisição seja 'POST'...
     else {
 
+        // ...atualizo meu objeto curso com os dados vindos da view e...
         curso.sigla     = req.body.sigla;
         curso.nome      = req.body.nome;
         curso.descricao = req.body.descricao;
         curso.id_area   = req.body.id_area;
 
+        // ...tento atualizar os dados no banco.
         try {
+            
             await curso.save();
             res.redirect("/curso");
+
         }
+
+        // Caso dê algum erro, indico na view
         catch (exception) {
-            res.render("curso/update", { curso, e:exception.errors });
+
+            res.render("curso/update", { curso, erros: exception.errors });
+
         }
         
     }

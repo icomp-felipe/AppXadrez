@@ -25,6 +25,7 @@ const hasError = (erros, campo) => {
             
         });
 
+    
     return classe;
 
 }

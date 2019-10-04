@@ -1,15 +1,14 @@
 {
     "development": {
-        "username": "root",
-        "password": "icomp123",
+        "username": "chess",
+        "password": "chessapp",
         "database": "chessapp",
         "host": "127.0.0.1",
         "dialect": "mysql",
         "dialectOptions": {
             "useUTC": false
         },
-        "timezone": "-04:00",
-        "operatorsAliases": false
+        "timezone": "-04:00"
     },
 
     "test": {
@@ -17,8 +16,7 @@
         "password": null,
         "database": "database_test",
         "host": "127.0.0.1",
-        "dialect": "mysql",
-        "operatorsAliases": false
+        "dialect": "mysql"
     },
 
     "production": {
@@ -26,8 +24,7 @@
         "password": null,
         "database": "database_production",
         "host": "127.0.0.1",
-        "dialect": "mysql",
-        "operatorsAliases": false
+        "dialect": "mysql"
     }
     
 }
