@@ -47,12 +47,13 @@ const read = async function(req, res) {
 
 const update = async function(req, res) {
 
-    // Aqui recupero o curso identificado pelo ID na URL ou no form do POST
+    // Aqui recupero o curso identificado pelo ID na URL ou no form do POST + todas as áreas de curso
     let curso = await Curso.findByPk(req.params.id || req.body.id);
+    let areas = await Area.findAll();
 
     // Se a requisição for 'GET', mostro a página de atualização
     if (req.route.methods.get)
-        res.render("curso/update", { curso });
+        res.render("curso/update", { curso, areas });
     
     // Caso a requisição seja 'POST'...
     else {

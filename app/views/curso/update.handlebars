@@ -34,31 +34,18 @@
             </div>
 
             <fieldset class="form-group">
+
                 <legend>Área do Curso</legend>
+
+                {{#each areas}}
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_agr" value="1" {{radio_select curso.id_area 1}}>
-                        Agrárias
+                        <input type="radio" class="form-check-input" name="id_area" value={{id}} {{radio_select @root.curso.id_area id}}>
+                        {{nome}}
                     </label>
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_bio" value="2" {{radio_select curso.id_area 2}}>
-                        Biológicas
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_exa" value="3" {{radio_select curso.id_area 3}}>
-                        Exatas
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_hum" value="4" {{radio_select curso.id_area 4}}>
-                        Humanas
-                    </label>
-                </div>
+                {{/each}}
+
             </fieldset>
 
             <input type="hidden" name="id" value="{{curso.id}}">

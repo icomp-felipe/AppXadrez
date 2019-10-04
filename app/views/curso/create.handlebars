@@ -29,36 +29,23 @@
 
             <div class="form-group">
                 <label for="descricao">Descrição</label>
-                <input type="text" class="form-control" name="descricao" id="descricao"
-                    placeholder="Digite uma descrição para o curso">
+                <textarea type="text" class="form-control" name="descricao" id="descricao" rows=3
+                    placeholder="Digite uma descrição para o curso"></textarea>
             </div>
 
             <fieldset class="form-group">
+
                 <legend>Área do Curso</legend>
+
+                {{#each areas}}
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_agr" value="1">
-                        Agrárias
+                        <input type="radio" class="form-check-input" name="id_area" value={{id}}>
+                        {{nome}}
                     </label>
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_bio" value="2">
-                        Biológicas
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_exa" value="3">
-                        Exatas
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="id_area" id="id_area_hum" value="4">
-                        Humanas
-                    </label>
-                </div>
+                {{/each}}
+
             </fieldset>
 
             <button type="submit" id="botao_cadastrar" class="btn btn-secondary">Cadastrar</button>
