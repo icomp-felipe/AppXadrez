@@ -41,9 +41,9 @@ module.exports = {
 
     down: (queryInterface, Sequelize) => {
 
-        return queryInterface.removeConstraint('partida','id_user_1');
-        return queryInterface.removeConstraint('partida','id_user_2');
-        return queryInterface.removeConstraint('partida','winner');
+        return queryInterface.removeConstraint('partida','partida_user1_fk');
+        return queryInterface.removeConstraint('partida','partida_user2_fk');
+        return queryInterface.removeConstraint('partida','partida_winner_fk');
 
     }
 

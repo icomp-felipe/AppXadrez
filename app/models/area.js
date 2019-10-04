@@ -9,7 +9,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         nome: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            
+        },
+        created_at: {
+            type: DataTypes.DATE
+        },
+        updated_at: {
+            type: DataTypes.DATE
         }
     }, {
         underscored: true,

@@ -1,8 +1,9 @@
 // Disponibilizando os modelos para uso
 const models = require("../models/index");
 
-// Disponibilizando apenas o modelo 'curso'
+// Disponibilizando os modelos utilizados nas views
 const Curso  = models.curso;
+const Area   = models.area;
 
 // Página principal da modelagem de cursos
 const index = async function(req, res) {
@@ -18,8 +19,12 @@ const index = async function(req, res) {
 const create = async function(req, res) {
 
     // Se a requisição for 'GET', mostro a página de cadastro
-    if (req.route.methods.get)
-        res.render("curso/create");
+    if (req.route.methods.get) {
+
+        let areas = await Area.findAll();
+        res.render("curso/create", { areas });
+
+    }
 
     // Senão, insiro os dados vindos via POST no banco de dados
     else {
