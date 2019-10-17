@@ -1,10 +1,12 @@
-const express = require("express");
-const logger  = require("morgan");
-const favicon = require("serve-favicon");
-const handlebars = require("express-handlebars");
-const router  = require("./config/routes");
-const sass  = require("node-sass-middleware");
-const app = express();
+const express      = require("express");
+const logger       = require("morgan");
+const favicon      = require("serve-favicon");
+const handlebars   = require("express-handlebars");
+const router       = require("./config/routes");
+const sass         = require("node-sass-middleware");
+const cookieParser = require("cookie-parser");
+const csrf         = require("csurf");
+const app          = express();
 
 const PORT = process.env.EXPRESS_PORT || 3000;
 
@@ -12,6 +14,12 @@ const PORT = process.env.EXPRESS_PORT || 3000;
 
 // Invocando o Morgan
 app.use(logger("short"));
+
+// Invocando o gerenciador de cookies
+app.use(cookieParser());
+
+// Invocando o CSRF
+app.use(csrf({ cookie: true }));
 
 // Chamando o middleware de tratamento de requisições POST
 app.use(express.urlencoded({extended: false}));

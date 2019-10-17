@@ -53,7 +53,7 @@ const update = async function(req, res) {
 
     // Se a requisição for 'GET', mostro a página de atualização
     if (req.route.methods.get)
-        res.render("curso/update", { curso, areas });
+        res.render("curso/update", { curso, areas, csrf: req.csrfToken() });
     
     // Caso a requisição seja 'POST'...
     else {
