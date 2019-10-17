@@ -1,0 +1,62 @@
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="bs-component">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/curso">Cursos</a></li>
+                <li class="breadcrumb-item active">Adicionar</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <h1>Cadastro de Usuário</h1>
+    </div>
+
+    <div class="col-8">
+
+        <form action='/signup' method="POST">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" class="form-control" name="nome" id="nome" placeholder="Fulano A. C. Silva">
+            </div>
+
+            <div class="form-group">
+                <label for="email">e-mail</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="fulanoac@dominio.com">
+            </div>
+
+            <div class="form-group">
+                <label for="id_curso">Selecione seu curso na UFAM</label>
+                <select class="form-control" name="id_curso" id="id_curso">
+                    {{#each cursos}}
+                        <option value="{{id}}">{{nome}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Digite uma senha de acesso</label>
+                <input type="password" class="form-control" name="senha" id="senha" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmacao">Confirme sua senha</label>
+                <input type="password" class="form-control" name="confirmacao" id="confirmacao" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">Eu li e concordo com os <a href="#">termos de serviço</a>.
+                </label>
+            </div>
+
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <button type="submit" id="botao_cadastrar" class="btn btn-secondary">Cadastrar</button>
+
+        </form>
+
+    </div>
+
+</div>

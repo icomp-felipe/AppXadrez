@@ -22,7 +22,7 @@ const create = async function(req, res) {
     if (req.route.methods.get) {
 
         let areas = await Area.findAll();
-        res.render("curso/create", { areas });
+        res.render("curso/create", { areas, csrf: req.csrfToken() });
 
     }
 

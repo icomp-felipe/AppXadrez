@@ -6,14 +6,16 @@ const router       = require("./config/routes");
 const sass         = require("node-sass-middleware");
 const cookieParser = require("cookie-parser");
 const csrf         = require("csurf");
+const uuid         = require("uuid/v4");
+const session      = require("express-session");
 const app          = express();
 
 const PORT = process.env.EXPRESS_PORT || 3000;
 
 /********************* Bloco de Middlewares *********************/
 
-// Invocando o Morgan
-app.use(logger("short"));
+// Chamando o middleware de tratamento de requisições POST
+app.use(express.urlencoded({extended: false}));
 
 // Invocando o gerenciador de cookies
 app.use(cookieParser());
@@ -21,8 +23,19 @@ app.use(cookieParser());
 // Invocando o CSRF
 app.use(csrf({ cookie: true }));
 
-// Chamando o middleware de tratamento de requisições POST
-app.use(express.urlencoded({extended: false}));
+// Gerenciador de sessão de usuário
+app.use(session({
+	genid: function (req) {
+		return uuid();
+	},
+	secret: "5tgKm80a#",
+	resave: true,
+	saveUninitialized: true,
+	name: "id.sessao"
+}));
+
+// Invocando o Morgan
+app.use(logger("short"));
 
 // Invocando o SASS
 app.use(sass({

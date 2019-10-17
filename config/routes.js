@@ -7,6 +7,13 @@ const cursoController = require("../app/controllers/curso");
 router.get("/",      mainController.index);
 router.get("/about", mainController.about);
 router.get("/ui",    mainController.ui   );
+router.get("/uuid",  mainController.uuid );
+
+router.get ("/signup", mainController.signup);
+router.post("/signup", mainController.signup);
+router.get ("/login" , mainController.login);
+router.post("/login" , mainController.login);
+router.get ("/logout", mainController.logout);
 
 // Controlador Curso
 router.get ("/curso",            cursoController.index );
