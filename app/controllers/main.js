@@ -1,12 +1,12 @@
 // Disponibilizando os modelos para uso
 const bcrypt = require("bcryptjs");
+const uuid   = require("uuid/v4");
 const models = require("../models/index");
 const config = require("../../config/config.json");
-const uuid = require("uuid/v4");
 
 // Disponibilizando os modelos utilizados nas views
 const Curso = models.curso;
-const User = models.user;
+const User  = models.user ;
 
 const index = (req, res) => {
     res.render("main/index");
@@ -20,9 +20,9 @@ const ui = (req, res) => {
     res.render("main/ui");
 }
 
-const uuids = (req, res) => {
+const uuid_tester = (req, res) => {
     const uniqueID = uuid();
-    res.end(`UUID: ${uniqueID}`);
+    res.render("main/uuid", { uuid: uniqueID });
 }
 
 const signup = async function (req, res) {
@@ -30,7 +30,7 @@ const signup = async function (req, res) {
     const cursos = await Curso.findAll();
 
     if (req.route.methods.get)
-        res.render("main/signup", { cursos });
+        res.render("main/signup", { cursos, csrf: req.csrfToken() });
 
     else {
 
@@ -38,10 +38,10 @@ const signup = async function (req, res) {
             bcrypt.hash(req.body.senha, salt, async (err, hash) => {
                 try {
                     await User.create({
-                        nome: req.body.nome,
+                        nome : req.body.nome,
                         email: req.body.email,
                         senha: hash,
-                        id_curso: req.body.id_curso
+                        id_curso: req.body.cursos
                     });
                     res.redirect("/");
                 }
@@ -77,7 +77,7 @@ const login = async function (req, res) {
 
         }
         catch (erros) {
-            res.render("main/login", { erros, csrf: req.csrfToken() })
+            console.log(erros);
         }
 
     }
@@ -86,6 +86,14 @@ const login = async function (req, res) {
 
 const logout = async function (req, res) {
 
+    req.session.destroy(function (err) {
+        
+        if (err)
+            return console.log(err);
+        
+        res.redirect("/");
+    });
+
 }
 
-module.exports = { index, about, ui, signup, login, logout, uuid: uuids }
+module.exports = { index, about, ui, signup, login, logout, uuid: uuid_tester }

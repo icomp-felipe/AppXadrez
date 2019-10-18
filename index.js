@@ -14,6 +14,9 @@ const PORT = process.env.EXPRESS_PORT || 3000;
 
 /********************* Bloco de Middlewares *********************/
 
+// Remove o 'X-Powered-By: Express' do cabeçalho HTTP
+app.disable('x-powered-by');
+
 // Chamando o middleware de tratamento de requisições POST
 app.use(express.urlencoded({extended: false}));
 
