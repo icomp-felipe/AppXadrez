@@ -9,6 +9,7 @@ const csrf         = require("csurf");
 const uuid         = require("uuid/v4");
 const session      = require("express-session");
 const app          = express();
+const bodyParser  = require('body-parser');
 
 const PORT = process.env.EXPRESS_PORT || 3000;
 
@@ -16,6 +17,8 @@ const PORT = process.env.EXPRESS_PORT || 3000;
 
 // Remove o 'X-Powered-By: Express' do cabeçalho HTTP
 app.disable('x-powered-by');
+
+app.use(bodyParser.json());
 
 // Chamando o middleware de tratamento de requisições POST
 app.use(express.urlencoded({extended: false}));

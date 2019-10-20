@@ -12,7 +12,7 @@ const index = async function(req, res) {
     const cursos = await Curso.findAll();
     
     // Chamando a view e passando os dados do BD
-    res.render("curso/index", { cursos });
+    res.render("curso/index", { cursos, csrf: req.csrfToken() });
 
 }
 
@@ -39,10 +39,6 @@ const create = async function(req, res) {
         
     }
 
-}
-
-const read = async function(req, res) {
-    res.end(`:: Aqui vai ter um modal, um dia... ID: ${req.params.id}`);
 }
 
 const update = async function(req, res) {
@@ -84,9 +80,13 @@ const update = async function(req, res) {
 }
 
 const remove = async function(req, res) {
-    res.end(`:: Aqui vai ter um modal, um dia... ${req.params.id}`);
+
+    await Curso.destroy({ where: { id: req.body.id }});
+    
+    res.end(`:: Removido curso com id: ${req.body.id}`);
+
 }
 
 module.exports = {
-	index, create, read, update, delete: remove
+	index, create, update, delete: remove
 }
