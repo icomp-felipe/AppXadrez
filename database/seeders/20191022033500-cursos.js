@@ -645,8 +645,7 @@ module.exports = {
                 id_area: 1,
                 created_at: new Date(),
                 updated_at: new Date()
-            },
-
+            }
 
         ], {});
     },

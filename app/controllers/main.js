@@ -1,9 +1,5 @@
-// Disponibilizando os modelos para uso
-const bcrypt = require("bcryptjs");
-const uuid   = require("uuid/v4");
-
 const index = (req, res) => {
-    res.render("pages/index");
+    res.render("pages/homepage");
 }
 
 const about = (req, res) => {
@@ -11,12 +7,7 @@ const about = (req, res) => {
 }
 
 const ui = (req, res) => {
-    res.render("main/ui");
+    res.render("pages/ui");
 }
 
-const uuid_tester = (req, res) => {
-    const uniqueID = uuid();
-    res.render("main/uuid", { uuid: uniqueID });
-}
-
-module.exports = { index, about, ui, uuid: uuid_tester }
+module.exports = { index, about, ui }

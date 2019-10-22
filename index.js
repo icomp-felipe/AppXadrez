@@ -56,8 +56,9 @@ app.use(sass({
 
 // Invocando o Handlebars
 app.engine("handlebars",handlebars({
-	helpers: require(__dirname + "/app/views/helpers/string_helpers.js"),
-	defaultLayout: "default"
+	layoutsDir: __dirname + "/app/views/layouts",
+	defaultLayout: "default",
+	helpers: require(__dirname + "/app/views/helpers/string_helpers.js")
 }));
 app.set("view engine","handlebars");
 app.set("views", __dirname + "/app/views");

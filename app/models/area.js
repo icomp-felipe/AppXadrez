@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true
     });
     area.associate = function (models) {
-        // associations can be defined here
+        area.belongsTo(models.curso);
     };
     return area;
 };

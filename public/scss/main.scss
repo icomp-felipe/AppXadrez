@@ -1,5 +1,8 @@
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
-@import "./public/scss/_variables.scss";
+@import "./public/scss/template/_variables.scss";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-@import "./public/scss/_bootswatch.scss";
-@import "./public/scss/bootswatch_custom.scss";
+@import "./public/scss/template/_bootswatch.scss";
+@import "./public/scss/template/bootswatch_custom.scss";
+
+// Estilos de páginas
+@import "./public/scss/homepage.scss";

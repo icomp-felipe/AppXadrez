@@ -6,12 +6,12 @@ const mainController     = require("../app/controllers/main");
 const cursoController    = require("../app/controllers/curso");
 const legalController    = require("../app/controllers/legal");
 const entranceController = require("../app/controllers/entrance");
+const testController     = require("../app/controllers/test");
 
 // Controlador Main
-router.get("/",      mainController.index);
+router.get("/"     , mainController.index);
 router.get("/about", mainController.about);
-router.get("/ui",    mainController.ui   );
-router.get("/uuid",  mainController.uuid );
+router.get("/ui"   , mainController.ui   );
 
 // Controlador Entrance
 router.get ("/signup", entranceController.signup);
@@ -24,10 +24,13 @@ router.get ("/logout", entranceController.logout);
 router.get("/legal/terms"  , legalController.terms);
 router.get("/legal/privacy", legalController.privacy);
 
+// Controlador Test
+router.get("/test/uuid", testController.uuid );
+
 // Controlador Curso
-router.get ("/curso",            cursoController.index );
-router.get ("/curso/create",     cursoController.create);
-router.post("/curso/create",     cursoController.create);
+router.get ("/curso"           , cursoController.index );
+router.get ("/curso/create"    , cursoController.create);
+router.post("/curso/create"    , cursoController.create);
 router.get ("/curso/update/:id", cursoController.update);
 router.post("/curso/update"    , cursoController.update);
 router.post("/curso/delete"    , cursoController.delete);

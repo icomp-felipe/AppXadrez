@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true
     });
     curso.associate = function (models) {
-        // associations can be defined here
+        curso.hasOne(models.area);
     };
     return curso;
 };

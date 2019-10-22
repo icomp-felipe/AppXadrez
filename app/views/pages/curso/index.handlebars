@@ -17,7 +17,7 @@
 
         <div class="bs-component">
             <table class="table table-hover">
-                <thead>
+                <thead class="table-primary">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Sigla</th>
@@ -27,13 +27,13 @@
                 </thead>
                 <tbody>
                     {{#each cursos}}
-                    <tr class="table-active">
+                    <tr class="table-light">
                         <th scope="row">{{id}}</th>
                         <td>{{sigla}}</td>
                         <td>{{nome}}</td>
                         <td>
-                            <button id="but-read-{{id}}" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-read" data-id="{{id}}" data-sigla="{{sigla}}" data-nome="{{nome}}" data-descricao="{{descricao}}"><i class="fas fa-eye" aria-hidden="true"></i></button>
-                            <a class="btn btn-warning btn-sm" href="/curso/update/{{id}}"><i class="fas fa-pencil-alt"></i></a>
+                            <button id="but-read-{{id}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-read" data-id="{{id}}" data-sigla="{{sigla}}" data-nome="{{nome}}" data-descricao="{{descricao}}"><i class="fas fa-eye" aria-hidden="true"></i></button>
+                            <a class="btn btn-secondary btn-sm" href="/curso/update/{{id}}"><i class="fas fa-pencil-alt"></i></a>
                             <button id="but-del-{{id}}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" data-id="{{id}}" data-sigla="{{sigla}}" data-nome="{{nome}}"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
                         </td>
                     </tr>
@@ -53,7 +53,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
-                    <p id="modal-read-body"></p>
+                    <p id="modal-read-body" class="breakable"></p>
                 </div>
             </div>
         </div>
@@ -72,8 +72,8 @@
                     <p>Deseja mesmo excluir o curso: <span id="modal-del-resume"></span>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="but-delete">Excluir</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="but-delete">Excluir</button>
                 </div>
             </div>
         </div>
