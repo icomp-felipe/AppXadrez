@@ -12,7 +12,7 @@ const index = async function(req, res) {
     const cursos = await Curso.findAll();
     
     // Chamando a view e passando os dados do BD
-    res.render("curso/index", { cursos, csrf: req.csrfToken() });
+    res.render("pages/curso/index", { cursos, csrf: req.csrfToken() });
 
 }
 
@@ -22,7 +22,7 @@ const create = async function(req, res) {
     if (req.route.methods.get) {
 
         let areas = await Area.findAll();
-        res.render("curso/create", { areas, csrf: req.csrfToken() });
+        res.render("pages/curso/create", { areas, csrf: req.csrfToken() });
 
     }
 
@@ -49,7 +49,7 @@ const update = async function(req, res) {
 
     // Se a requisição for 'GET', mostro a página de atualização
     if (req.route.methods.get)
-        res.render("curso/update", { curso, areas, csrf: req.csrfToken() });
+        res.render("pages/curso/update", { curso, areas, csrf: req.csrfToken() });
     
     // Caso a requisição seja 'POST'...
     else {
@@ -71,7 +71,7 @@ const update = async function(req, res) {
         // Caso dê algum erro, indico na view
         catch (exception) {
 
-            res.render("curso/update", { curso, erros: exception.errors });
+            res.render("pages/curso/update", { curso, erros: exception.errors });
 
         }
         

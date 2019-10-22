@@ -1,7 +1,11 @@
 const express = require("express");
 const router  = express.Router();
-const mainController  = require("../app/controllers/main");
-const cursoController = require("../app/controllers/curso");
+
+// Importando os controladores
+const mainController     = require("../app/controllers/main");
+const cursoController    = require("../app/controllers/curso");
+const legalController    = require("../app/controllers/legal");
+const entranceController = require("../app/controllers/entrance");
 
 // Controlador Main
 router.get("/",      mainController.index);
@@ -9,11 +13,16 @@ router.get("/about", mainController.about);
 router.get("/ui",    mainController.ui   );
 router.get("/uuid",  mainController.uuid );
 
-router.get ("/signup", mainController.signup);
-router.post("/signup", mainController.signup);
-router.get ("/login" , mainController.login);
-router.post("/login" , mainController.login);
-router.get ("/logout", mainController.logout);
+// Controlador Entrance
+router.get ("/signup", entranceController.signup);
+router.post("/signup", entranceController.signup);
+router.get ("/login" , entranceController.login );
+router.post("/login" , entranceController.login );
+router.get ("/logout", entranceController.logout);
+
+// Controlador Legal
+router.get("/legal/terms"  , legalController.terms);
+router.get("/legal/privacy", legalController.privacy);
 
 // Controlador Curso
 router.get ("/curso",            cursoController.index );
@@ -26,7 +35,7 @@ router.post("/curso/delete"    , cursoController.delete);
 // Rota para a página 404
 router.use(function(req, res) {
 	res.statusCode = 404;
-	res.render("main/404", {layout: false});
+	res.render("pages/404", {layout: false});
 });
 
 module.exports = router;
