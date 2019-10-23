@@ -9,7 +9,7 @@ const csrf         = require("csurf");
 const uuid         = require("uuid/v4");
 const session      = require("express-session");
 const app          = express();
-const bodyParser  = require('body-parser');
+const bodyParser   = require('body-parser');
 
 const PORT = process.env.EXPRESS_PORT || 3000;
 

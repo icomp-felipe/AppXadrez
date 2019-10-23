@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true
     });
     area.associate = function (models) {
-        area.belongsTo(models.curso);
+        area.belongsTo(models.curso, { foreignKey: 'id' });
     };
     return area;
 };
