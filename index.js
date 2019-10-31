@@ -11,6 +11,9 @@ const session      = require("express-session");
 const app          = express();
 const bodyParser   = require('body-parser');
 
+const http         = require("http").createServer(app);
+const socketIO     = require("socket.io")(http);
+
 const PORT = process.env.EXPRESS_PORT || 3000;
 
 /********************* Bloco de Middlewares *********************/
@@ -75,12 +78,37 @@ app.use("/js",[
 // Declarando o favicon
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
+// Teste de Socket.IO
+socketIO.on("connection", (client) => {
+
+	var sala = 1;
+	const user_id = client.id.substr(0,4);
+
+	client.join(sala);
+
+	console.log("usuário conectado");
+
+	client.on("oi", (msg) => {
+		console.log(msg);
+		client.emit("oi", `:: Você disse: '${msg}'`);
+		client.to(sala).broadcast.emit("oi", `O usuário ${user_id} disse: '${msg}'`)
+	})
+
+	client.on("mudarSala", (s) => {
+		sala = s;
+		client.leaveAll();
+		client.join(sala);
+		console.log(`:: Usuário ${user_id} entrou na sala ${sala}`);
+	});
+
+});
+
 /********************* Bloco de Roteamento *********************/
 
 app.use(router);
 
 /********************* Bloco do Servidor *********************/
 
-app.listen(PORT, function() {
+http.listen(PORT, function() {
 	console.log(`:: Express App started at port ${PORT}...`);
 });

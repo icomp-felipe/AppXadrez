@@ -6,4 +6,8 @@ const uuid_tester = (req, res) => {
     res.render("pages/test/uuid", { uuid: uniqueID });
 }
 
-module.exports = { uuid: uuid_tester }
+const socket = (req, res) => {
+    res.render("pages/test/socket");
+}
+
+module.exports = { uuid: uuid_tester, socket }

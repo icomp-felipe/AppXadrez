@@ -25,7 +25,8 @@ router.get("/legal/terms"  , legalController.terms);
 router.get("/legal/privacy", legalController.privacy);
 
 // Controlador Test
-router.get("/test/uuid", testController.uuid );
+router.get("/test/uuid"  , testController.uuid );
+router.get("/test/socket", testController.socket );
 
 // Controlador Curso
 router.get ("/curso"           , cursoController.index );
