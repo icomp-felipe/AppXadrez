@@ -19,12 +19,14 @@
         <form action='/signup' method="POST">
             <div class="form-group">
                 <label for="nome">Nome Completo</label>
-                <input type="text" class="form-control" name="nome" id="nome" placeholder="Fulano A. C. Silva">
+                <input type="text" class="form-control {{hasError errors 'nome'}}" name="nome" id="nome" placeholder="Fulano A. C. Silva">
+                <div class="invalid-feedback">{{getError errors 'nome'}}</div>
             </div>
 
             <div class="form-group">
                 <label for="email">e-mail</label>
-                <input type="text" class="form-control" name="email" id="email" placeholder="fulanoac@dominio.com">
+                <input type="text" class="form-control {{hasError errors 'email'}}" name="email" id="email" placeholder="fulanoac@dominio.com">
+                <div class="invalid-feedback">{{getError errors 'email'}}</div>
             </div>
 
             <div class="form-group">
@@ -44,6 +46,7 @@
             <div class="form-group">
                 <label for="confirmacao">Confirme sua senha</label>
                 <input type="password" class="form-control" name="confirmacao" id="confirmacao" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+                <div id="erro-senha" class="invalid-feedback"></div>
             </div>
 
             <div class="form-check">
@@ -68,3 +71,32 @@
     </div>
 
 </div>
+
+<script>
+
+    var botao  = document.getElementById("botao_cadastrar");
+    var senha1 = document.getElementById("senha");
+    var senha2 = document.getElementById("confirmacao");
+    var label  = document.getElementById("erro-senha");
+    var passwd = document.getElementById("confirmacao");
+
+    botao.onclick = function(event) {
+
+        if (senha1.value != senha2.value) {
+
+            event.preventDefault();
+            label.innerHTML  = "As senhas informadas não são iguais!";
+            passwd.className = "form-control is-invalid";
+
+        }
+        else if (senha1.value.length < 6) {
+
+            event.preventDefault();
+            label.innerHTML  = "A senha deve possuir mais de 6 caracteres!";
+            passwd.className = "form-control is-invalid";
+
+        }
+
+    }
+
+</script>

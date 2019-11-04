@@ -1,6 +1,7 @@
 // Disponibilizando os modelos e configurações para uso
 const models = require("../models/index");
 const config = require("../../config/config.json");
+const bcrypt = require("bcryptjs");
 
 // Disponibilizando os modelos utilizados nas views
 const Curso = models.curso;
@@ -27,7 +28,12 @@ const signup = async function (req, res) {
                     res.redirect("/");
                 }
                 catch (erros) {
-                    console.log(erros);
+                    res.render("pages/entrance/signup", {
+                        cursos,
+                        csrf: req.csrfToken(),
+                        user: req.body,
+                        errors: erros.errors
+                    });
                 }
             });
         });
