@@ -4,6 +4,9 @@
 @import "./public/scss/template/_bootswatch.scss";
 @import "./public/scss/template/bootswatch_custom.scss";
 
+// Estilos do Jogo de Xadrez
+@import "./public/scss/game/chessboard.scss";
+
 // Estilos de páginas
 @import "./public/scss/homepage.scss";
 @import "./public/scss/breakable.scss";

@@ -7,11 +7,16 @@ const cursoController    = require("../app/controllers/curso");
 const legalController    = require("../app/controllers/legal");
 const entranceController = require("../app/controllers/entrance");
 const testController     = require("../app/controllers/test");
+const gameController     = require("../app/controllers/game");
 
 // Controlador Main
 router.get("/"     , mainController.index);
 router.get("/about", mainController.about);
 router.get("/ui"   , mainController.ui   );
+
+// Controlador Game
+router.get("/game"       , gameController.index);
+router.get("/game/:color", gameController.index);
 
 // Controlador Entrance
 router.get ("/signup", entranceController.signup);

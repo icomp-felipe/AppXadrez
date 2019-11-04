@@ -72,6 +72,8 @@ app.use("/js",[
 	express.static(__dirname + "/node_modules/popper.js/dist/umd"),
 	express.static(__dirname + "/node_modules/bootstrap/dist/js"),
 	express.static(__dirname + "/node_modules/@fortawesome/fontawesome-free/js"),
+	express.static(__dirname + '/node_modules/@chrisoakman/chessboardjs/dist/'),
+  	express.static(__dirname + '/node_modules/chess.js/'),
 	express.static(__dirname + "/public/js")
 ]);
 
@@ -81,12 +83,10 @@ app.use(favicon(__dirname + '/public/img/favicon.ico'));
 // Teste de Socket.IO
 socketIO.on("connection", (client) => {
 
-	var sala = 1;
+	var   sala = 1;
 	const user_id = client.id.substr(0,4);
 
 	client.join(sala);
-
-	console.log("usuário conectado");
 
 	client.on("oi", (msg) => {
 		console.log(msg);
@@ -99,6 +99,11 @@ socketIO.on("connection", (client) => {
 		client.leaveAll();
 		client.join(sala);
 		console.log(`:: Usuário ${user_id} entrou na sala ${sala}`);
+	});
+
+	// Rebate o jogo de um usuário aos demais
+	client.on("client-move", (move) => {
+		client.to(sala).broadcast.emit("server-move", move);
 	});
 
 });

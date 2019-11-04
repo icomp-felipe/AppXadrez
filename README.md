@@ -11,6 +11,7 @@ Bem vindo ao jogo de xadrez virtual (ChessApp).
 
 ## Tarefas Realizadas
 
+* Implementar Socket.IO;
 * Criar SQL de configuração de BD;
 * Criar seeder de cursos;
 * Criar página dos termos de serviço;
