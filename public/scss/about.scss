@@ -1,0 +1,21 @@
+@mixin center () {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;  
+}
+
+#chess-about {
+  
+    img {
+        height: 20em;
+        @include center();
+        border: 5px dashed #2FA4E7;
+    }
+
+    h1 {
+        padding-top: 20px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
+}
