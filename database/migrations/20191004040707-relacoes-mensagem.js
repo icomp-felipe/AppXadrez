@@ -5,7 +5,7 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
 
         return Promise.all([
-            queryInterface.addConstraint('mensagem', ['id_partida'], {
+            queryInterface.addConstraint('mensagem', ['partida_id'], {
                 type: 'foreign key',
                 name: 'mensagem_partida_fk',
                 references: {
@@ -15,7 +15,7 @@ module.exports = {
                 onDelete: 'restrict',
                 onUpdate: 'restrict'
             }),
-            queryInterface.addConstraint('mensagem', ['id_user'], {
+            queryInterface.addConstraint('mensagem', ['user_id'], {
                 type: 'foreign key',
                 name: 'mensagem_user_fk',
                 references: {

@@ -13,7 +13,7 @@ module.exports = {
                 allowNull: false
             },
             email: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(50),
                 allowNull: false,
                 unique: true
             },
@@ -21,7 +21,7 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            id_curso: {
+            curso_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },

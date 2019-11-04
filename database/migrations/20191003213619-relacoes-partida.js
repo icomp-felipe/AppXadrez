@@ -5,9 +5,9 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
 
         return Promise.all([
-            queryInterface.addConstraint('partida', ['id_user_1'], {
+            queryInterface.addConstraint('partida', ['user_id_1'], {
                 type: 'foreign key',
-                name: 'partida_user1_fk',
+                name: 'partida_user_id_1_fk',
                 references: {
                     table: 'user',
                     field: 'id'
@@ -15,9 +15,9 @@ module.exports = {
                 onDelete: 'restrict',
                 onUpdate: 'restrict'
             }),
-            queryInterface.addConstraint('partida', ['id_user_2'], {
+            queryInterface.addConstraint('partida', ['user_id_2'], {
                 type: 'foreign key',
-                name: 'partida_user2_fk',
+                name: 'partida_user_id_2_fk',
                 references: {
                     table: 'user',
                     field: 'id'
@@ -41,8 +41,8 @@ module.exports = {
 
     down: (queryInterface, Sequelize) => {
 
-        return queryInterface.removeConstraint('partida','partida_user1_fk');
-        return queryInterface.removeConstraint('partida','partida_user2_fk');
+        return queryInterface.removeConstraint('partida','partida_user_id_1_fk');
+        return queryInterface.removeConstraint('partida','partida_user_id_2_fk');
         return queryInterface.removeConstraint('partida','partida_winner_fk');
 
     }

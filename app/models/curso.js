@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        id_area: {
+        area_id: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

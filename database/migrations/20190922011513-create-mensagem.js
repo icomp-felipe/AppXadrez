@@ -8,16 +8,16 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            id_partida: {
+            partida_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },
-            id_user: {
+            user_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },
             mensagem: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(1024),
                 allowNull: false
             },
             created_at: {

@@ -9,18 +9,30 @@ module.exports = (sequelize, DataTypes) => {
         },
         nome: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                len: {
+                    args: [5,100],
+                    msg : "Seu nome precisa ter entre 5 e 100 caracteres!"
+                }
+            }
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: true,
+            validate: {
+                isEmail: {
+                    args: true,
+                    msg: "Por favor, insira um e-mail válido"
+                }
+            }
         },
         senha: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        id_curso: {
+        curso_id: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

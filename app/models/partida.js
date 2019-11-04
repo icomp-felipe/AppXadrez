@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        id_user_1: {
+        user_id_1: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        id_user_2: {
+        user_id_2: {
             type: DataTypes.INTEGER
         },
         winner: {

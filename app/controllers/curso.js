@@ -58,7 +58,7 @@ const update = async function(req, res) {
         curso.sigla     = req.body.sigla;
         curso.nome      = req.body.nome;
         curso.descricao = req.body.descricao;
-        curso.id_area   = req.body.id_area;
+        curso.area_id   = req.body.area_id;
 
         // ...tento atualizar os dados no banco.
         try {

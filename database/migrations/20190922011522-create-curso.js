@@ -9,7 +9,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             sigla: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(4),
                 allowNull: false
             },
             nome: {
@@ -20,7 +20,7 @@ module.exports = {
                 type: Sequelize.TEXT,
                 allowNull: false
             },
-            id_area: {
+            area_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },

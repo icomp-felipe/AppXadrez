@@ -4,9 +4,9 @@ module.exports = {
 
     up: (queryInterface, Sequelize) => {
 
-        return queryInterface.addConstraint('curso', ['id_area'], {
+        return queryInterface.addConstraint('curso', ['area_id'], {
             type: 'foreign key',
-            name: 'curso_id_area_fk',
+            name: 'curso_area_id_fk',
             references: {
                 table: 'area',
                 field: 'id'
@@ -19,7 +19,7 @@ module.exports = {
 
     down: (queryInterface, Sequelize) => {
 
-        return queryInterface.removeConstraint('curso','curso_id_area_fk');
+        return queryInterface.removeConstraint('curso','curso_area_id_fk');
 
     }
 };
