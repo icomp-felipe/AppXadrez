@@ -1,8 +1,4 @@
-@mixin center () {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;  
-}
+@import "./mixins/center-align.scss";
 
 #chess-welcome {
   

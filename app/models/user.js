@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true
     });
     user.associate = function (models) {
-        // associations can be defined here
+        user.hasMany(models.partida, { foreignKey: 'winner' });
     };
     return user;
 };

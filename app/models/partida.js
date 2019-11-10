@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true
     });
     partida.associate = function (models) {
-        // associations can be defined here
+        partida.belongsTo(models.user, { as: 'usuario', foreignKey: 'winner' });
     };
     return partida;
 };

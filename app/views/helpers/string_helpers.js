@@ -47,4 +47,8 @@ const getError = (erros, campo) => {
 
 }
 
-module.exports = { toUpper, toLower, radio_select, hasError, getError };
+const index = function(valor) {
+    return valor + 1;
+}
+
+module.exports = { toUpper, toLower, radio_select, hasError, getError, index };

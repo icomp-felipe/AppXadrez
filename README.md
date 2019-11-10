@@ -4,6 +4,12 @@ Bem vindo ao jogo de xadrez virtual (ChessApp).
 
 ## Próximos Passos
 
+* Ranking: qtd de vitórias não carregado pelo Handlebars
+* Paginação da listagem de cursos
+* Validação de senha no controller, ao invés da página
+* Login redirect to referrer page
+* Validação de fields
+* Quantos caracteres tem o nome completo??
 * Estudar e implementar associações;
 * Ajeitar tela de cadastro de usuário (checkbox ainda é só de enfeite);
 * Implementar tratamento de erros (modal delete de curso + CRUD);
