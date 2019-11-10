@@ -11,7 +11,7 @@ const gameController     = require("../app/controllers/game");
 
 // Controlador Main
 router.get("/"     , mainController.index);
-router.get("/about", mainController.about);
+router.get("/sobre", mainController.about);
 router.get("/ui"   , mainController.ui   );
 
 // Controlador Game

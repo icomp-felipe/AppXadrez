@@ -23,7 +23,7 @@ const signup = async function (req, res) {
                         nome : req.body.nome,
                         email: req.body.email,
                         senha: hash,
-                        id_curso: req.body.cursos
+                        curso_id: req.body.cursos
                     });
                     res.redirect("/");
                 }
@@ -43,8 +43,9 @@ const signup = async function (req, res) {
 
 const login = async function (req, res) {
 
-    if (req.session.uid)
+    if (req.session.uid) {
         res.redirect("/")
+    }
 
     else if (req.route.methods.get)
         res.render("pages/entrance/login", { csrf: req.csrfToken() });
@@ -58,6 +59,7 @@ const login = async function (req, res) {
             bcrypt.compare(req.body.senha, user.senha, (err, ok) => {
                 if (ok) {
                     req.session.uid = user.id;
+                    req.session.username = user.nome;
                     res.redirect("/");
                 }
             });

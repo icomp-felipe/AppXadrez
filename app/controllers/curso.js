@@ -71,7 +71,7 @@ const update = async function(req, res) {
         // Caso dê algum erro, indico na view
         catch (exception) {
 
-            res.render("pages/curso/update", { curso, erros: exception.errors });
+            res.render("pages/curso/update", { curso, areas, erros: exception.errors, csrf: req.csrfToken() });
 
         }
         

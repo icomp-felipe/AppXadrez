@@ -42,6 +42,10 @@ app.use(session({
 	saveUninitialized: true,
 	name: "id.sessao"
 }));
+app.use(function (req, res, next) {
+	res.locals.session = req.session;
+	next();
+});
 
 // Invocando o Morgan
 app.use(logger("short"));
