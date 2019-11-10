@@ -28,7 +28,8 @@ router.post("/login" , entranceController.login );
 router.get ("/logout", entranceController.logout);
 
 // Controlador Legal
-router.get("/legal/terms"  , legalController.terms);
+router.get("/legal/cookies", legalController.cookies);
+router.get("/legal/terms"  , legalController.terms  );
 router.get("/legal/privacy", legalController.privacy);
 
 // Controlador Test

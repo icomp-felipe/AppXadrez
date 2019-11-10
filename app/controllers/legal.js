@@ -10,4 +10,10 @@ const terms = (req,res) => {
 
 }
 
-module.exports = { privacy, terms }
+const cookies = (req,res) => {
+
+    res.render("pages/legal/cookies");
+
+}
+
+module.exports = { privacy, terms, cookies }
