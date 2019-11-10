@@ -43,17 +43,20 @@ const signup = async function (req, res) {
 
 const login = async function (req, res) {
 
-    if (req.session.uid) {
-        res.redirect("/")
-    }
+    // Se o usuário está logado, não tem pq fazer login novamente
+    if (req.session.uid)
+        res.redirect("/");
 
+    // Caso contrário, mostro a página de login
     else if (req.route.methods.get)
         res.render("pages/entrance/login", { csrf: req.csrfToken() });
-        
+    
+    // Aqui faço o login
     else {
 
         try {
 
+            // Buscando o usuário no banco de dados
             const user = await User.findOne({ where: { email: req.body.email } });
 
             bcrypt.compare(req.body.senha, user.senha, (err, ok) => {
@@ -75,13 +78,18 @@ const login = async function (req, res) {
 
 const logout = async function (req, res) {
 
-    req.session.destroy(function (err) {
-        
-        if (err)
-            return console.log(err);
-        
-        res.redirect("/");
-    });
+    // Faz logou apenas se o usuário está logado
+    if (req.session.uid) {
+
+        req.session.destroy((err) => {
+            if (err)
+                return console.log(err);
+        });
+
+    }
+
+    // De qualquer forma, o redireciona para a página inicial
+    res.redirect("/");
 
 }
 

@@ -14,7 +14,7 @@ const bodyParser   = require('body-parser');
 const http         = require("http").createServer(app);
 const socketIO     = require("socket.io")(http);
 
-const PORT = process.env.EXPRESS_PORT || 3000;
+const PORT = process.env.EXPRESS_PORT || 4567;
 
 /********************* Bloco de Middlewares *********************/
 
