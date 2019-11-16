@@ -5,6 +5,7 @@ const models = require("../models/index");
 const Partida  = models.partida;
 const User = models.user;
 
+// Disponibilizando o sequelize
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
@@ -21,6 +22,7 @@ const index = function (req, res) {
         else
             res.render("pages/game/board", {
                 color: req.params.color,
+                user : req.session.uid,
                 partida: 1
             });
 
@@ -35,8 +37,33 @@ const index = function (req, res) {
 
 const partida = function (req,res) {
 
-    if (req.session.uid)
-        res.render("pages/game/partida")
+    // Se o usuário está logado...
+    if (req.session.uid) {
+
+        // ...e este quer iniciar uma nova partida, o faço
+        if (!req.params.partidaID) {
+            res.render("pages/game/partida", {
+                novo   : true,
+                user   : req.session.uid,
+                partida: 0
+            });
+        }
+
+        // ...e deseja retomar uma partida já existente
+        else {
+
+            res.render("pages/game/partida", {
+                novo   : false,
+                user   : req.session.uid,
+                partida: req.params.partidaID
+            });
+
+        }
+
+
+    }
+    
+    // ...senão, o redireciono pra página de login
     else
         res.redirect("/login");
 
@@ -56,11 +83,13 @@ const ranking = async function(req, res) {
             attributes: ['winner', [sequelize.fn('count', sequelize.col('*')), 'vitorias']],
             group: ['winner'],
             having: sequelize.where(sequelize.fn('count', sequelize.col('*')), {
-                [Op.gt]: 1,
+                [Op.gt]: 1
             }),
             order  : [[sequelize.fn('count', sequelize.col('*')), 'DESC']],
             include: [{model: User, as:'usuario', attributes:['nome']}]
         });
+
+        console.log(ranking[0]);
 
         res.render("pages/game/ranking", { ranking });
 

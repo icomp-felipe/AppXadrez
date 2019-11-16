@@ -15,10 +15,9 @@ router.get("/sobre", mainController.about);
 router.get("/ui"   , mainController.ui   );
 
 // Controlador Game
-router.get("/game"       , gameController.index  );
-router.get("/game/:color", gameController.index  );
-router.get("/partida"    , gameController.partida);
-router.get("/ranking"    , gameController.ranking);
+router.get("/partida"           , gameController.partida);
+router.get("/partida/:partidaID", gameController.partida);
+router.get("/ranking"           , gameController.ranking);
 
 // Controlador Entrance
 router.get ("/signup", entranceController.signup);

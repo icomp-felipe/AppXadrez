@@ -85,32 +85,7 @@ app.use("/js",[
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
 // Teste de Socket.IO
-socketIO.on("connection", (client) => {
-
-	var   sala = 1;
-	const user_id = client.id.substr(0,4);
-
-	client.join(sala);
-
-	client.on("oi", (msg) => {
-		console.log(msg);
-		client.emit("oi", `:: Você disse: '${msg}'`);
-		client.to(sala).broadcast.emit("oi", `O usuário ${user_id} disse: '${msg}'`)
-	})
-
-	client.on("mudarSala", (s) => {
-		sala = s;
-		client.leaveAll();
-		client.join(sala);
-		console.log(`:: Usuário ${user_id} entrou na sala ${sala}`);
-	});
-
-	// Rebate o jogo de um usuário aos demais
-	client.on("client-move", (move) => {
-		client.to(sala).broadcast.emit("server-move", move);
-	});
-
-});
+socketIO.on("connection", require("./sockets"));
 
 /********************* Bloco de Roteamento *********************/
 

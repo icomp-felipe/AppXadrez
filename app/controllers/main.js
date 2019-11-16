@@ -1,5 +1,9 @@
 const index = (req, res) => {
-    res.render("pages/homepage");
+
+    if (req.session.uid)
+        res.render("pages/homepage-logged");
+    else
+        res.render("pages/homepage");
 }
 
 const about = (req, res) => {
