@@ -9,32 +9,6 @@ const User = models.user;
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
-const index = function (req, res) {
-
-    // Se o usuário está logado...
-    if (req.session.uid) {
-
-        // Verifico se ele já não escolheu a cor de sua peça
-        if (!req.params.color)
-            res.render("pages/game/choosecolor");
-        
-        // Senão inicio o jogo
-        else
-            res.render("pages/game/board", {
-                color: req.params.color,
-                user : req.session.uid,
-                partida: 1
-            });
-
-    }
-
-    // Caso contrário, o redireciono pra página de login
-    else
-        res.redirect("/login");
-
-
-}
-
 const partida = function (req,res) {
 
     // Se o usuário está logado...
@@ -43,9 +17,8 @@ const partida = function (req,res) {
         // ...e este quer iniciar uma nova partida, o faço
         if (!req.params.partidaID) {
             res.render("pages/game/partida", {
-                novo   : true,
                 user   : req.session.uid,
-                partida: 0
+                partida: 0   // o zero indica que é uma nova partida
             });
         }
 
@@ -53,7 +26,6 @@ const partida = function (req,res) {
         else {
 
             res.render("pages/game/partida", {
-                novo   : false,
                 user   : req.session.uid,
                 partida: req.params.partidaID
             });
@@ -99,4 +71,4 @@ const ranking = async function(req, res) {
 
 };
 
-module.exports = { index, partida, ranking };
+module.exports = { partida, ranking };

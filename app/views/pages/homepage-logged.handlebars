@@ -1,11 +1,69 @@
-<div class="row">
-    <div class="col-9 mt-4">
-        <p class="lead">Seja bem vindo ao aplicativo de partidas de xadrez do Instituto de Computação. Para iniciar uma
-            nova partida, clique na opção <u>Nova Partida</u> do menu superior. Essa aplicação foi desenvolvida com
-            muito carinho por <a href="mailto:fass@icomp.ufam.edu.br">Felipe André</a> como
-            Trabalho Prático da disciplina Programação Web 2.</p>
+<div id="homepage-logged">
+
+    <div class="row">
+        <div class="col-9 mt-4">
+            <p class="lead">Seja bem vindo ao aplicativo de partidas de xadrez do Instituto de Computação. Para iniciar
+                uma nova partida, clique na opção <u>Nova Partida</u> do menu superior. Essa aplicação foi desenvolvida
+                com muito carinho por <a href="mailto:fass@icomp.ufam.edu.br">Felipe André</a> como
+                Trabalho Prático da disciplina Programação Web 2.</p>
+        </div>
+        <div class="col-3">
+            <img src="/img/chess-clipart.png" alt="">
+        </div>
     </div>
-    <div class="col-3">
-        <img src="/img/chess-clipart.png" alt="">
+
+    <script>
+        const board = [];
+    </script>
+
+    <h2>Minhas partidas</h2>
+
+    {{#each partidasUsuario}}
+
+    <div class="small-board">
+        <a href="/partida/{{id}}">
+            <div id="board-{{id}}"></div>
+            <div class="small-info">
+                <span class="white"><i class="fas fa-chess-king"></i></span>{{user_id_1}}<br>
+                <span class="black"><i class="fas fa-chess-king"></i></span>{{user_id_2}}
+            </div>
+        </a>
     </div>
+    <script>
+        board[{{ id }}] = Chessboard('board-{{id}}', {
+            orientation: 'white',
+            position: "{{fen}}",
+            showNotation: false
+        });
+    </script>
+
+    {{/each}}
+
+    <div class="clearfix"></div>
+    <br>
+
+    <h2>Usuários aguardando oponentes</h2>
+
+    {{#each partidasLivres}}
+
+    <div class="small-board">
+        <a href="/partida/{{id}}">
+            <div id="board-{{id}}"></div>
+            <div class="small-info">
+                <span class="white"><i class="fas fa-chess-king"></i></span>{{user_id_1}}
+            </div>
+        </a>
+    </div>
+    <script>
+        board[{{ id }}] = Chessboard('board-{{id}}', {
+            orientation: 'white',
+            position: "{{fen}}",
+            showNotation: false
+        });
+    </script>
+
+    {{/each}}
+
+    <div class="clearfix"></div>
+
 </div>

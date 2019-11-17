@@ -9,8 +9,10 @@ const socket = function(client) {
     // O cliente solicita a configuração do jogo toda vez que a página '/partida' é carregada
     client.on("recuperar-jogo", async (jogo) => {
 
-        // Se o jogo é novo...
-        if (jogo.novo) {
+
+        /* A sala é identificada pelo ID da partida no BD, se for zero,
+         * significa que é uma nova partida, logo, se o jogo é novo... */
+        if (jogo.partida == 0) {
 
             // ...instancio uma nova partida no BD...
             let novaPartida = await Partida.create({
@@ -18,7 +20,7 @@ const socket = function(client) {
                 fen      : "start"
             });
 
-            // ...crio uma sala (identificada pelo ID da partida no BD) e...
+            // ...crio uma sala  e...
             client.join(novaPartida.id);
 
             // ...e envio a configuração criada ao cliente.
