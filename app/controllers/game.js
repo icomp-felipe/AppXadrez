@@ -45,23 +45,23 @@ const ranking = async function(req, res) {
 
     if (req.session.uid) {
 
-        // SELECT `partida`.`winner`, count(*) AS `num_vitorias`, `usuario`.`id` AS `usuario.id`, `usuario`.`nome` AS `usuario.nome`
+        // SELECT `partida`.`winner`, count(*) AS `vitorias`, `usuario`.`id` AS `usuario.id`, `usuario`.`nome` AS `usuario.nome`
         // FROM `partida` AS `partida`
         // LEFT OUTER JOIN `user` AS `usuario` ON `partida`.`winner` = `usuario`.`id`
+        // WHERE `partida`.`winner` IS NOT NULL
         // GROUP BY `winner`
         // HAVING count(*) > 1
         // ORDER BY count(*) DESC;
         let ranking = await Partida.findAll({
             attributes: ['winner', [sequelize.fn('count', sequelize.col('*')), 'vitorias']],
             group: ['winner'],
+            where: { winner: { [Op.ne]: null } },
             having: sequelize.where(sequelize.fn('count', sequelize.col('*')), {
                 [Op.gt]: 1
             }),
             order  : [[sequelize.fn('count', sequelize.col('*')), 'DESC']],
             include: [{model: User, as:'usuario', attributes:['nome']}]
         });
-
-        console.log(ranking[0]);
 
         res.render("pages/game/ranking", { ranking });
 
