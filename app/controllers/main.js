@@ -7,6 +7,7 @@ const Op = sequelize.Op;
 
 // Disponibilizando os modelos utilizados nas views
 const Partida  = models.partida;
+const User = models.user;
 
 const index = async (req, res) => {
 
@@ -15,13 +16,16 @@ const index = async (req, res) => {
 
         // Recupera todas as partidas que o usuário criou
         let partidasUsuario = await Partida.findAll({
-            where: { user_id_1: req.session.uid }
+            where: { user_id_1: req.session.uid },
+            include: [{model: User, as:'ownerPlayer'  , attributes:['nome']},
+                      {model: User, as:'invitedPlayer', attributes:['nome']}]
         });
 
         // Recupera todas as partidas criadas por outros usuários e que estão aguardando oponentes
         let partidasLivres = await Partida.findAll({
             where: { user_id_1: { [Op.ne]: req.session.uid },
-                     user_id_2: { [Op.is]: null} }
+                     user_id_2: { [Op.is]: null} },
+            include: [{model: User, as: "ownerPlayer", attributes:["nome"]}]
         });
 
         // Renderizando a view

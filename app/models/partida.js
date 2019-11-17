@@ -31,7 +31,9 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true
     });
     partida.associate = function (models) {
-        partida.belongsTo(models.user, { as: 'usuario', foreignKey: 'winner' });
+        partida.belongsTo(models.user, { foreignKey: "user_id_1", as: "ownerPlayer"   });
+        partida.belongsTo(models.user, { foreignKey: "user_id_2", as: "invitedPlayer" });
+        partida.belongsTo(models.user, { foreignKey: "winner"   , as: "winnerPlayer"  });
     };
     return partida;
 };

@@ -1,12 +1,16 @@
-<div class="container">
 
-    <div id="chess" class="container clearfix">
-        <div class="chessboard">
-            <div id="board" style="width: 600px"></div>
-            <div id="status">A vez é do jogador <b>branco</b>.</div>
+<div id="chess" class="container clearfix">
+    <div class="chessboard">
+        <div id="board" style="width: 600px"></div>
+        <div class="opponents">
+            {{#if invited}}
+                <span class="white"><i class="fas fa-chess-king"></i></span>&nbsp;&nbsp;{{owner.nome}}&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;{{invited.nome}}&nbsp;&nbsp;<span class="black"><i class="fas fa-chess-king"></i></span>
+            {{else}}
+                Aguardando oponente.
+            {{/if}}
         </div>
+        <div id="status"></div>
     </div>
-
 </div>
 
 <script>

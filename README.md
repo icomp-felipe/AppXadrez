@@ -4,6 +4,8 @@ Bem vindo ao jogo de xadrez virtual (ChessApp).
 
 ## Próximos Passos
 
+* Problemas com CSS de peças de Xadrez, de onde vem o 'svg' da /partida?
+* Associações estão ok?
 * Ranking: qtd de vitórias não carregado pelo Handlebars
 * Paginação da listagem de cursos
 * Validação de senha no controller, ao invés da página

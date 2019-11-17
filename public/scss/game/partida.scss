@@ -1,0 +1,14 @@
+#chess .chessboard .opponents {
+    padding-top: 4px;
+    font-size: 22px
+}
+
+#chess .chessboard .opponents .white svg {
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
+}
+
+#chess .chessboard .opponents .black svg {
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white
+}

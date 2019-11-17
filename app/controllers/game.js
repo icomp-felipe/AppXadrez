@@ -9,7 +9,7 @@ const User = models.user;
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
-const partida = function (req,res) {
+const partida = async function (req,res) {
 
     // Se o usuário está logado...
     if (req.session.uid) {
@@ -25,9 +25,17 @@ const partida = function (req,res) {
         // ...e deseja retomar uma partida já existente
         else {
 
+            // Aqui recupero da partida os nomes dos jogadores
+            let usuarios = await Partida.findByPk(req.params.partidaID, { 
+                            include: [{model: User, as:'ownerPlayer'  , attributes:['nome']},
+                                      {model: User, as:'invitedPlayer', attributes:['nome']}]
+            });
+
             res.render("pages/game/partida", {
                 user   : req.session.uid,
-                partida: req.params.partidaID
+                partida: req.params.partidaID,
+                owner  : usuarios.ownerPlayer,
+                invited: usuarios.invitedPlayer
             });
 
         }
@@ -47,7 +55,7 @@ const ranking = async function(req, res) {
 
         // SELECT `partida`.`winner`, count(*) AS `vitorias`, `usuario`.`id` AS `usuario.id`, `usuario`.`nome` AS `usuario.nome`
         // FROM `partida` AS `partida`
-        // LEFT OUTER JOIN `user` AS `usuario` ON `partida`.`winner` = `usuario`.`id`
+        // LEFT OUTER JOIN `user` AS `winnerPlayer` ON `partida`.`winner` = `winnerPlayer`.`id`
         // WHERE `partida`.`winner` IS NOT NULL
         // GROUP BY `winner`
         // HAVING count(*) > 1
@@ -60,7 +68,7 @@ const ranking = async function(req, res) {
                 [Op.gt]: 1
             }),
             order  : [[sequelize.fn('count', sequelize.col('*')), 'DESC']],
-            include: [{model: User, as:'usuario', attributes:['nome']}]
+            include: [{model: User, as:'winnerPlayer', attributes:['nome']}]
         });
 
         res.render("pages/game/ranking", { ranking });

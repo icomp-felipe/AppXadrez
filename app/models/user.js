@@ -47,7 +47,9 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true
     });
     user.associate = function (models) {
-        user.hasMany(models.partida, { foreignKey: 'winner' });
+        user.hasMany(models.partida, { foreignKey: "user_id_1", as: "ownerRounds"   });
+        user.hasMany(models.partida, { foreignKey: "user_id_2", as: "invitedRounds" });
+        user.hasMany(models.partida, { foreignKey: "winner"   , as: "winnerRounds"  });
     };
     return user;
 };
