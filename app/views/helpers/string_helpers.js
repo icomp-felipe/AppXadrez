@@ -12,6 +12,10 @@ const radio_select = (valor, campo) => {
 
 }
 
+const sequelizeGet = function (obj, col) {
+    return obj.get(col);
+  }
+
 const hasError = (erros, campo) => {
 
     var classe = "";
@@ -51,4 +55,4 @@ const index = function(valor) {
     return valor + 1;
 }
 
-module.exports = { toUpper, toLower, radio_select, hasError, getError, index };
+module.exports = { toUpper, toLower, radio_select, hasError, getError, index, sequelizeGet };

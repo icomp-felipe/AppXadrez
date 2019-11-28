@@ -71,6 +71,8 @@ const ranking = async function(req, res) {
             include: [{model: User, as:'winnerPlayer', attributes:['nome']}]
         });
 
+        console.log( ranking );
+
         res.render("pages/game/ranking", { ranking });
 
     }
