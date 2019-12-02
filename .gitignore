@@ -89,6 +89,7 @@
 
 node_modules
 public/scss/.sass-cache
+public/css/main.css
 
 ################################################
 #

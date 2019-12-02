@@ -51,7 +51,8 @@
 
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox">Eu li e concordo com os <a href="/legal/terms">termos de serviço</a>.
+                    <input class="form-check-input" id="check-termos" type="checkbox">Eu li e concordo com os <a href="/legal/terms">termos de serviço</a>.
+                    <div id="erro-checkbox" class="invalid-feedback"></div>
                 </label>
             </div>
 
@@ -80,7 +81,18 @@
     var label  = document.getElementById("erro-senha");
     var passwd = document.getElementById("confirmacao");
 
+    var check     = document.getElementById("check-termos");
+    var erroCheck = document.getElementById("erro-checkbox");
+
     botao.onclick = function(event) {
+
+        if (!check.checked) {
+            event.preventDefault();
+            erroCheck.innerHTML = "Você não concordou com os termos de servico";
+            check.className = "form-check-input is-invalid";
+        }
+        else
+            check.className = "form-check-input";
 
         if (senha1.value != senha2.value) {
 

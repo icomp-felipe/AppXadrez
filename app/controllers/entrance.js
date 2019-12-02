@@ -60,11 +60,18 @@ const login = async function (req, res) {
             const user = await User.findOne({ where: { email: req.body.email } });
 
             bcrypt.compare(req.body.senha, user.senha, (err, ok) => {
+
+                // Se consegui fazer login, salvo as variáveis de sessão e redireciono pra página home
                 if (ok) {
                     req.session.uid = user.id;
                     req.session.username = user.nome;
                     res.redirect("/");
                 }
+
+                // Senão, renderizo a página de login com erro
+                else
+                    res.render("pages/entrance/login", { csrf: req.csrfToken(), loginFailed: true });
+                    
             });
 
         }
